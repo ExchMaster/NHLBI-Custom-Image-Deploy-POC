@@ -5,7 +5,7 @@
     "vmName": {
       "type": "string",
       "metadata": {
-        "description": "Name of the VM"
+        "description": "Name of the VM, must be unique"
       }
     },
     "adminUserName": {
@@ -33,7 +33,7 @@
     "osDiskVhdUri": {
       "type": "string",
       "metadata": {
-        "description": "Uri of the existing VHD in ARM standard or premium storage"
+        "description": "Uri of the existing VHD in ARM standard or premium storage, utilize portal.azure.com and browse your storage account blobs to find the URI."
       }
     },
     "vmSize": {
@@ -52,6 +52,12 @@
 
       "metadata": {
         "description": "Size of the VM"
+      }
+    },
+    "VMStorageAccount": {
+      "type": "string",
+      "metadata": {
+        "description": "Must be the name of the 'storage account name' defined in osDiskVhdUri.  IE: https://<storage account name>.blob.core.windows.net/????*/????*.vhd"
       }
     },
     "existingVirtualNetworkName": {
@@ -78,7 +84,7 @@
     "publicIPAddressType": "Dynamic",
     "vnetID": "[resourceId(parameters('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('existingVirtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/', parameters('subnetName'))]",
-    "osDiskVal": "[concat(parameters('vmName'),uniqueString(resourceGroup().id),'.vhd')]",
+    "osDiskVal": "[trim(string(concat(uri(parameters('osDiskVhdUri'),parameters('vmName')),'.vhd')))]",
     "nicName": "[parameters('vmName')]"
   },
   "resources": [
@@ -133,7 +139,7 @@
               "uri": "[parameters('osDiskVhdUri')]"
             },
             "vhd": {
-              "uri": "[uri(parameters('osDiskVhdUri'), variables('osDiskVal'))]"
+              "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/vhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'.vhd'))]"
             },
             "createOption": "FromImage"
           }
