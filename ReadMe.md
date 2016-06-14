@@ -22,5 +22,4 @@ The following lists provides the necessary information to successfullly deploy a
 9. _EXISTINGVIRTUALNETWORKRESOURCEGROUP_:  The name of the resource group which contains the virtual network where this new VM will be deployed.
 10. _SUBNETNAME_: The name of the subnet inside the virtual network where this new VM will be deployed.
 
-The key thing to remember is that the new VM must be deployed into the same storage account that the source
-
+The key thing to remember is that the new VM must be deployed into the same storage account that the source image resides in.  That's why the same storagea account name is used in steps 5 and 7.
