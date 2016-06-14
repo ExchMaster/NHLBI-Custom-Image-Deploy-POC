@@ -20,5 +20,5 @@ The following lists provides the necessary information to successfullly deploy a
 7. _VMSTORAGEACCOUNT_:  Please supply the storage account name from step five.  For example, if the custom image uri is:  https://jaisaname.blob.core.windows.net/vhds/rhelv101.vhd, then the value you would put in this field is 'jaisaname'.
 8. _EXISTINGVIRTUALNETWORKNAME_:  The name of the existing virtual network where this new VM will be deployed.
 9. _EXISTINGVIRTUALNETWORKRESOURCEGROUP_:  The name of the resource group which contains the virtual network where this new VM will be deployed.
-10: _SUBNETNAME_: The name of the subnet inside the virtual network where this new VM will be deployed.
+10. _SUBNETNAME_: The name of the subnet inside the virtual network where this new VM will be deployed.
 
