@@ -93,9 +93,6 @@
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[variables('nicName')]",
       "location": "[resourceGroup().location]",
-      "tags": {
-        "displayName": "NetworkInterface"
-      },
       "properties": {
         "ipConfigurations": [
           {
@@ -115,9 +112,6 @@
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('vmName')]",
       "location": "[resourceGroup().location]",
-      "tags": {
-        "displayName": "VirtualMachine"
-      },
       "dependsOn": [
         "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
       ],
@@ -139,7 +133,7 @@
               "uri": "[parameters('osDiskVhdUri')]"
             },
             "vhd": {
-              "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/vhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'.vhd'))]"
+              "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/zvhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'.vhd'))]"
             },
             "createOption": "FromImage"
           }
