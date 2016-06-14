@@ -15,7 +15,7 @@ The following lists provides the necessary information to successfullly deploy a
 2. _ADMINUSERNAME_:  The admin username is the super user on the system and can _NOT_ utilize common names (admin, root, or administrator).  This username will be quivalent of root on Linux and administrator on Windows.
 3. _ADMINPASSWORD_:  Must be 12 characters long, utilize at least one special character, some derivatives of 'password' and other well known common pass word bases are blocked from use.
 4. _OSTYPE_:  Defines the type of operating system; Windows or Linux
-5. _OSDISKVHDURI_:  This is the URI for your custom image, it will have the form of:  https://<storage account name>.blob.core.windows.net/????*/????*.vhd.  Please take note of your storage account name, you will need it on step 7.
+5. _OSDISKVHDURI_:  This is the URI for your custom image, it will have the form of:  https://__storageaccountname__.blob.core.windows.net/????*/????*.vhd.  Please take note of your storage account name, you will need it on step 7.
 6. _VMSIZE_: Select the appropriate size of the virtual machine. To view sizes, use the following document: <a href="https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-sizes/" target="_blank">Azure VM Sizes</a>.
 7. _VMSTORAGEACCOUNT_:  Please supply the storage account name from step five.  For example, if the custom image uri is:  https://jaisaname.blob.core.windows.net/vhds/rhelv101.vhd, then the value you would put in this field is 'jaisaname'.
 8. _EXISTINGVIRTUALNETWORKNAME_:  The name of the existing virtual network where this new VM will be deployed.
