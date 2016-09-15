@@ -188,7 +188,7 @@
                     "autoUpgradeMinorVersion": true,
                     "settings": {
                       "fileUris": [
-                        "https://raw.githubusercontent.com/ExchMaster/NEI-Pilot-Projects/master/configstorv2.sh"
+                        "https://raw.githubusercontent.com/ExchMaster/NHLBI-Custom-Image-Deploy-POC/master/configstor.sh"
                       ],
                         "commandToExecute": "sh configstor.sh"
                     }
