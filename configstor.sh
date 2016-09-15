@@ -8,7 +8,7 @@ vgcreate vg1 /dev/sdc /dev/sdd
 
 #Create logical volume
 
-lvcreate -l 100%VG -i 50 -n lv1 vg1
+lvcreate -l 100%VG -i 2 -n lv1 vg1
 
 #Formates logical volume using XFS
 
