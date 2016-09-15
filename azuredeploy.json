@@ -133,10 +133,33 @@
               "uri": "[parameters('osDiskVhdUri')]"
             },
             "vhd": {
-              "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/zvhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'.vhd'))]"
+              "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/zvhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'os.vhd'))]"
             },
             "createOption": "FromImage"
-          }
+          },
+          "dataDisks": [
+            {
+              "name": "datadisk0",
+              "diskSizeGB": "1023",
+              "lun": 0,
+              "vhd": {
+                "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/zvhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'ddisk0.vhd'))]"
+              },
+              "caching": "None",
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk1",
+              "diskSizeGB": "1023",
+              "lun": 1,
+              "vhd": {
+                "uri": "[concat('https://', parameters('VMStorageAccount'),'.blob.core.windows.net/zvhds/', concat(parameters('vmname'),uniqueString(resourceGroup().id),'ddisk1.vhd'))]"
+              },
+              "caching": "None",
+              "createOption": "Empty"
+            }
+          ]
+
         },
         "networkProfile": {
           "networkInterfaces": [
@@ -145,7 +168,33 @@
             }
           ]
         }
-      }
+      },
+        "resources": [
+            {
+                "name": "custScriptExt",
+                "type": "extensions",
+                "location": "[resourceGroup().location]",
+                "apiVersion": "2015-06-15",
+                "dependsOn": [
+                    "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+                ],
+                "tags": {
+                    "displayName": "custScriptExt"
+                },
+                "properties": {
+                    "publisher": "Microsoft.OSTCExtensions",
+                    "type": "CustomScriptForLinux",
+                    "typeHandlerVersion": "1.4",
+                    "autoUpgradeMinorVersion": true,
+                    "settings": {
+                      "fileUris": [
+                        "https://raw.githubusercontent.com/ExchMaster/NEI-Pilot-Projects/master/configstorv2.sh"
+                      ],
+                        "commandToExecute": "sh configstor.sh"
+                    }
+                }
+            }
+        ]
     }
   ]
 }
