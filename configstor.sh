@@ -1,3 +1,5 @@
+
+#For ubuntu distros, please add lvm and fs packages 'apt-get install xfsprogs lvm2'
 #Creates volumes on two disks, /dev/sdc & /dev/sdd
 
 pvcreate /dev/sdc /dev/sdd
